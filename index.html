@@ -549,6 +549,8 @@ input.txt:focus{border-color:#2E7BFF;background:#fff}
 </div></div>
 </div>
 <script src="packs/bas.js"></script>
+<script src="packs/fragor.js"></script>
+<script src="packs/matte.js" onerror="window.KLURR_MG=[]"></script>
 <script src="packs/laxor.js" onerror="window.KLURR_LAXOR=[]"></script>
 <script src="ocr/tesseract.min.js"></script>
 <script>
@@ -866,13 +868,13 @@ const MG=[
      ()=>{const b=rn(2,12)*2,h=rn(2,10);return[`Arean av en triangel med basen ${b} cm och höjden ${h} cm`,b*h/2+' cm²',[b*h+' cm²',b+h+' cm²',b*h/2+2+' cm²']]})}
    if(g>=7){Q.push(()=>{const r=rn(2,10);return[`Omkretsen på en cirkel med radien ${r} cm (π ≈ 3,14)`,fx(2*3.14*r)+' cm',[fx(3.14*r)+' cm',fx(3.14*r*r)+' cm',fx(2*3.14*r+1)+' cm']]},
      ()=>{const a=rn(2,6),b=rn(2,6),c=rn(2,6);return[`Volymen av ett rätblock ${a} × ${b} × ${c} cm`,a*b*c+' cm³',[2*(a*b+b*c+a*c)+' cm²'.replace('²','³'),a+b+c+' cm³',a*b*c+a+' cm³']]})}
-   return pk(Q)()}}];
+   return pk(Q)()}}].concat(window.KLURR_MG||[]);
 // bankpack per årskurs (förskoleklass = 0)
 const BASG={eng:[3,9],verb:[5,9],matte:[5,9],norden:[4,9],rymd:[2,9],kropp:[4,9],minor:[5,9]};
 function gradeOf(){const p=P&&P.list&&P.list.find(x=>x.id===P.cur);if(p&&p.gr!=null&&p.gr!=='')return +p.gr;if(p&&p.age)return Math.max(0,Math.min(9,p.age-6));return 5}
 function basG(c){if(BASG[c.bas])return BASG[c.bas];const ak=BAS[c.pi]&&BAS[c.pi].ak;if(!ak)return null;const[x,y]=String(ak).split('-').map(Number);return[x-1,(y||x)+1]}
 const gOk=(r,g)=>!r||(g>=r[0]&&g<=r[1]);
-function mgFresh(c,g){const m=MG.find(x=>x.id===c.gen);const[a,b,d]=m.f(g);c.a=a;c.b=String(typeof b==='number'?fx(b):b);c.d=d.map(String).filter(x=>x!==c.b).slice(0,3);return c}
+function mgFresh(c,g){const m=MG.find(x=>x.id===c.gen),rm=S.rm||[];let q,t=0;do{q=m.f(g)}while(rm.includes(q[0])&&++t<8);const[a,b,d]=q;c.a=a;c.b=String(typeof b==='number'?fx(b):b);c.d=d.map(String).filter(x=>x!==c.b).slice(0,3);return c}
 function loadP(){try{P=JSON.parse(localStorage.getItem(PKEY)||'null')}catch(e){P=null}if(!P||!Array.isArray(P.list))P={list:[],cur:null}}
 function saveP(){try{localStorage.setItem(PKEY,JSON.stringify(P))}catch(e){}}
 function load(){try{S=Object.assign(fresh(),JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){S=fresh()}
@@ -1192,18 +1194,23 @@ const norm=s=>s.toLowerCase().replace(/^(to|a|an|the|att|en|ett)\s+/,'').replace
 function lev(a,b){const m=a.length,n=b.length,d=Array.from({length:m+1},(_,i)=>[i]);for(let j=1;j<=n;j++)d[0][j]=j;
  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n]}
 const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+// Mindre upprepning: frågebankens kort kommer i tur och ordning (minst nyligen visade först, sedan färst stjärnor).
+// Fel svar plockas bort ur listan så att kortet kommer tillbaka snart. Matte undviker samma tal som nyligen.
+function recentSort(a){const r=new Map((S.rq||[]).map((k,i)=>[k,i+1]));return a.sort((x,y)=>((r.get(x.k)||0)-(r.get(y.k)||0))||(x.box-y.box))}
+function remember(pick){const ks=pick.filter(c=>c.k).map(c=>c.k);S.rq=(S.rq||[]).filter(k=>!ks.includes(k)).concat(ks).slice(-700);
+ S.rm=(S.rm||[]).concat(pick.filter(c=>c.gen).map(c=>c.a)).slice(-80)}
 function startRound(){if(!S.cards.length&&!BASC.length){go('scan');return}
  // 6 kort från BOOST-packet, 3 svaga från äldre pack, 1 från frågebanken (eller fyll ut)
  const bp=boostPid(),weak=a=>shuf(a).sort((x,y)=>x.box-y.box);
  const g=gradeOf(),bAll=weak(S.cards.filter(c=>c.p===bp)),oAll=weak(S.cards.filter(c=>c.p!==bp));
- let qAll=shuf(BASC.filter(c=>!c.gen&&gOk(basG(c),g))).sort((x,y)=>x.box-y.box);
- const mAll=weak(BASC.filter(c=>c.gen&&gOk(MG.find(m=>m.id===c.gen).g,g))).map(c=>mgFresh(c,g));
+ let qAll=recentSort(shuf(BASC.filter(c=>!c.gen&&gOk(basG(c),g))));
+ const mAll=recentSort(shuf(BASC.filter(c=>c.gen&&gOk(MG.find(m=>m.id===c.gen).g,g)))).map(c=>mgFresh(c,g));
  const nb=packProg(bp)>=.8?3:6,few=nb===6&&bAll.length>=6;
  // 6 BOOST + 2 äldre + 1 matte + 1 fråga, eller 3 BOOST + 3 äldre + 2 matte + 2 frågor
  let pick=bAll.slice(0,nb).concat(oAll.slice(0,few?2:3),mAll.slice(0,few?1:2),qAll.slice(0,few?1:2));
  const mix=[];for(let i=0;i<12;i++){const m=mAll[(few?1:2)+i],q=qAll[(few?1:2)+i];if(m)mix.push(m);if(q)mix.push(q)}
  const rest=bAll.slice(nb).concat(oAll.slice(few?2:3),mix);
- if(pick.length<10)pick=pick.concat(rest.slice(0,10-pick.length));pick=pick.slice(0,10);
+ if(pick.length<10)pick=pick.concat(rest.slice(0,10-pick.length));pick=pick.slice(0,10);remember(pick);
  R={q:shuf(pick),i:0,total:pick.length,done:0,ok:0,tries:0,combo:0,best:0,xp:0,cubes:0,res:[],boost:pick.some(c=>bp!==null&&c.p===bp&&!c.bas),mast:0};
  SFX.voice('hungry',vp());$('#ava').style.backgroundImage=look(myLook(),false);$('#avaEm').textContent='🤤';
  go('round');nextQ()}
@@ -1241,7 +1248,7 @@ function nextQ(){pips();if(!R.q.length){endRound();return}
 }
 function floatTxt(el,t,col){const r=el.getBoundingClientRect(),a=$('#app').getBoundingClientRect(),d=document.createElement('div');d.className='float';d.textContent=t;if(col)d.style.color=col;
  d.style.left=(r.left-a.left+r.width/2-30)+'px';d.style.top=(r.top-a.top-10)+'px';$('#app').appendChild(d);setTimeout(()=>d.remove(),900)}
-function answer(good,el){R.lock=true;R.tries++;const c=R.cur,first=!c._miss;
+function answer(good,el){R.lock=true;R.tries++;const c=R.cur,first=!c._miss;if(!good&&c.k&&S.rq)S.rq=S.rq.filter(k=>k!==c.k);
  if(good){R.combo++;R.best=Math.max(R.best,R.combo);const g=10+5*Math.min(R.combo-1,4);R.xp+=g;if(R.combo%3===0){R.cubes+=2}
   if(first){const was=c.box;c.box=Math.min(MAXB,c.box+1);R.ok++;if(c.box>was){qProg('star8');if(c.box>=MAXB)R.mast++;R.stars=(R.stars||0)+1;const st=$('#stars');st.innerHTML=starsHtml(c.box);st.classList.remove('up');void st.offsetWidth;st.classList.add('up')}}
   if(R.mode==='type'||R.mode==='spell')qProg('type3');if(R.mode==='tf')qProg('tf3');if(R.combo===5)qProg('combo5');c.n++;R.q.shift();R.res[R.done]=first?1:0;R.done++;
