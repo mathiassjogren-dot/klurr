@@ -1,0 +1,180 @@
+{
+ "size": 800,
+ "forms": [
+  "rund",
+  "lang",
+  "bred"
+ ],
+ "formNames": {
+  "rund": "Rund",
+  "lang": "Lång",
+  "bred": "Bred"
+ },
+ "colors": [
+  {
+   "id": "rosa",
+   "name": "Rosa",
+   "hex": "#FF4FA3"
+  },
+  {
+   "id": "mint",
+   "name": "Mint",
+   "hex": "#3DDDB0"
+  },
+  {
+   "id": "bla",
+   "name": "Himmelsblå",
+   "hex": "#4AA8FF"
+  },
+  {
+   "id": "lila",
+   "name": "Lila",
+   "hex": "#9B5CFF"
+  },
+  {
+   "id": "lime",
+   "name": "Lime",
+   "hex": "#A6E22E"
+  },
+  {
+   "id": "orange",
+   "name": "Orange",
+   "hex": "#FF8A2A"
+  },
+  {
+   "id": "guld",
+   "name": "Guld",
+   "hex": "#FFC23A"
+  },
+  {
+   "id": "midnatt",
+   "name": "Midnatt",
+   "hex": "#22264A"
+  }
+ ],
+ "eyes": [
+  "stora",
+  "kaxiga",
+  "olika"
+ ],
+ "eyeNames": {
+  "stora": "Stora",
+  "kaxiga": "Kaxiga",
+  "olika": "Olika stora"
+ },
+ "island": {
+  "dag": "o-dag.jpg",
+  "natt": "o-natt.jpg",
+  "shadow": "skugga-{form}.png"
+ },
+ "body": "k-{form}-{color}.png",
+ "face": "a-{form}-{eyes}-{color}.png",
+ "order": "nerifrån: ö, skugga, kropp, ansikte, sedan prylar: svans, rygg, kropp, ansikte, huvud",
+ "items": [
+  {
+   "id": "keps",
+   "name": "Guldkeps",
+   "r": "V",
+   "slot": "huvud",
+   "file": "p-keps-{form}.png"
+  },
+  {
+   "id": "blakeps",
+   "name": "Blå keps",
+   "r": "V",
+   "slot": "huvud",
+   "file": "p-blakeps-{form}.png"
+  },
+  {
+   "id": "horn",
+   "name": "Horn",
+   "r": "V",
+   "slot": "huvud",
+   "file": "p-horn-{form}.png"
+  },
+  {
+   "id": "shades",
+   "name": "Mörka shades",
+   "r": "O",
+   "slot": "ansikte",
+   "file": "p-shades-{form}.png"
+  },
+  {
+   "id": "mossa",
+   "name": "Grön mössa",
+   "r": "O",
+   "slot": "huvud",
+   "file": "p-mossa-{form}.png"
+  },
+  {
+   "id": "kedja",
+   "name": "Guldkedja",
+   "r": "O",
+   "slot": "kropp",
+   "file": "p-kedja-{form}.png"
+  },
+  {
+   "id": "lurar",
+   "name": "Neonlurar",
+   "r": "S",
+   "slot": "huvud",
+   "file": "p-lurar-{form}.png"
+  },
+  {
+   "id": "taggar",
+   "name": "Taggrygg",
+   "r": "S",
+   "slot": "rygg",
+   "file": "p-taggar-{form}.png"
+  },
+  {
+   "id": "blad",
+   "name": "Bladtopp",
+   "r": "E",
+   "slot": "huvud",
+   "file": "p-blad-{form}.png"
+  },
+  {
+   "id": "oron",
+   "name": "Kaninöron",
+   "r": "E",
+   "slot": "huvud",
+   "file": "p-oron-{form}-{color}.png"
+  },
+  {
+   "id": "svans",
+   "name": "Regnbågssvans",
+   "r": "E",
+   "slot": "svans",
+   "file": "p-svans-{form}.png"
+  },
+  {
+   "id": "prickar",
+   "name": "Lysprickar",
+   "r": "E",
+   "slot": "kropp",
+   "file": "p-prickar-{form}.png"
+  },
+  {
+   "id": "krona",
+   "name": "Krona",
+   "r": "E",
+   "slot": "huvud",
+   "file": "p-krona-{form}.png"
+  },
+  {
+   "id": "gloria",
+   "name": "Gloria",
+   "r": "E",
+   "slot": "huvud",
+   "file": "p-gloria-{form}.png"
+  },
+  {
+   "id": "diamantkrona",
+   "name": "Diamantkrona",
+   "r": "L",
+   "slot": "huvud",
+   "file": "p-diamantkrona-{form}.png"
+  }
+ ]
+}

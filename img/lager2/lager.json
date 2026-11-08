@@ -1,0 +1,283 @@
+{
+ "v": 2,
+ "size": 800,
+ "gray": 200,
+ "forms": [
+  {
+   "id": "rund",
+   "name": "Rund"
+  },
+  {
+   "id": "lang",
+   "name": "Lång"
+  },
+  {
+   "id": "bred",
+   "name": "Bred"
+  },
+  {
+   "id": "kub",
+   "name": "Kub"
+  },
+  {
+   "id": "skruv",
+   "name": "Skruv"
+  }
+ ],
+ "colors": [
+  {
+   "name": "Rosa",
+   "hex": "#FF4FA3"
+  },
+  {
+   "name": "Röd",
+   "hex": "#FF3B3B"
+  },
+  {
+   "name": "Orange",
+   "hex": "#FF8A2A"
+  },
+  {
+   "name": "Guld",
+   "hex": "#FFC23A"
+  },
+  {
+   "name": "Citron",
+   "hex": "#FFE94A"
+  },
+  {
+   "name": "Lime",
+   "hex": "#A6E22E"
+  },
+  {
+   "name": "Grön",
+   "hex": "#2FBF5B"
+  },
+  {
+   "name": "Mint",
+   "hex": "#3DDDB0"
+  },
+  {
+   "name": "Turkos",
+   "hex": "#1FC8D6"
+  },
+  {
+   "name": "Himmelsblå",
+   "hex": "#4AA8FF"
+  },
+  {
+   "name": "Blå",
+   "hex": "#2F5BFF"
+  },
+  {
+   "name": "Lila",
+   "hex": "#9B5CFF"
+  },
+  {
+   "name": "Magenta",
+   "hex": "#D23CFF"
+  },
+  {
+   "name": "Persika",
+   "hex": "#FFB38A"
+  },
+  {
+   "name": "Vit",
+   "hex": "#F4F4F4"
+  },
+  {
+   "name": "Grå",
+   "hex": "#8A8F9E"
+  },
+  {
+   "name": "Brun",
+   "hex": "#8B5A3C"
+  },
+  {
+   "name": "Svart",
+   "hex": "#2A2A33"
+  },
+  {
+   "name": "Midnatt",
+   "hex": "#22264A"
+  }
+ ],
+ "pats": [
+  {
+   "id": "enfargad",
+   "name": "Enfärgad",
+   "lv": 1,
+   "file": null
+  },
+  {
+   "id": "mage",
+   "name": "Mage",
+   "lv": 1,
+   "file": "m-{form}-mage.png"
+  },
+  {
+   "id": "topp",
+   "name": "Topp",
+   "lv": 1,
+   "file": "m-{form}-topp.png"
+  },
+  {
+   "id": "frost",
+   "name": "Frost",
+   "lv": 2,
+   "file": "m-{form}-frost.png"
+  },
+  {
+   "id": "tonad",
+   "name": "Tonad",
+   "lv": 3,
+   "file": "m-{form}-tonad.png"
+  },
+  {
+   "id": "rander",
+   "name": "Ränder",
+   "lv": 4,
+   "file": "m-{form}-rander.png"
+  },
+  {
+   "id": "prickar",
+   "name": "Prickar",
+   "lv": 5,
+   "file": "m-{form}-prickar.png"
+  },
+  {
+   "id": "halv",
+   "name": "Halv/halv",
+   "lv": 6,
+   "file": "m-{form}-halv.png"
+  }
+ ],
+ "eyes": [
+  "stora",
+  "kaxiga",
+  "olika"
+ ],
+ "eyeNames": {
+  "stora": "Stora",
+  "kaxiga": "Kaxiga",
+  "olika": "Olika stora"
+ },
+ "island": {
+  "dag": "o-dag.jpg",
+  "natt": "o-natt.jpg",
+  "shadow": "skugga-{form}.png"
+ },
+ "body": "g-{form}.png",
+ "face": "a-{form}-{eyes}.png",
+ "lids": {
+  "kaxiga": "l-{form}-kaxiga.png"
+ },
+ "items": [
+  {
+   "id": "keps",
+   "name": "Guldkeps",
+   "r": "V",
+   "slot": "huvud",
+   "file": "p-keps-{form}.png"
+  },
+  {
+   "id": "blakeps",
+   "name": "Blå keps",
+   "r": "V",
+   "slot": "huvud",
+   "file": "p-blakeps-{form}.png"
+  },
+  {
+   "id": "horn",
+   "name": "Horn",
+   "r": "V",
+   "slot": "huvud",
+   "file": "p-horn-{form}.png"
+  },
+  {
+   "id": "shades",
+   "name": "Mörka shades",
+   "r": "O",
+   "slot": "ansikte",
+   "file": "p-shades-{form}.png"
+  },
+  {
+   "id": "mossa",
+   "name": "Grön mössa",
+   "r": "O",
+   "slot": "huvud",
+   "file": "p-mossa-{form}.png"
+  },
+  {
+   "id": "kedja",
+   "name": "Guldkedja",
+   "r": "O",
+   "slot": "kropp",
+   "file": "p-kedja-{form}.png"
+  },
+  {
+   "id": "lurar",
+   "name": "Neonlurar",
+   "r": "S",
+   "slot": "huvud",
+   "file": "p-lurar-{form}.png"
+  },
+  {
+   "id": "taggar",
+   "name": "Taggrygg",
+   "r": "S",
+   "slot": "rygg",
+   "file": "p-taggar-{form}.png"
+  },
+  {
+   "id": "blad",
+   "name": "Bladtopp",
+   "r": "E",
+   "slot": "huvud",
+   "file": "p-blad-{form}.png"
+  },
+  {
+   "id": "oron",
+   "name": "Kaninöron",
+   "r": "E",
+   "slot": "huvud",
+   "file": "p-oron-{form}.png",
+   "tint": true
+  },
+  {
+   "id": "svans",
+   "name": "Regnbågssvans",
+   "r": "E",
+   "slot": "svans",
+   "file": "p-svans-{form}.png"
+  },
+  {
+   "id": "prickar",
+   "name": "Lysprickar",
+   "r": "E",
+   "slot": "kropp",
+   "file": "p-prickar-{form}.png"
+  },
+  {
+   "id": "krona",
+   "name": "Krona",
+   "r": "E",
+   "slot": "huvud",
+   "file": "p-krona-{form}.png"
+  },
+  {
+   "id": "gloria",
+   "name": "Gloria",
+   "r": "E",
+   "slot": "huvud",
+   "file": "p-gloria-{form}.png"
+  },
+  {
+   "id": "diamantkrona",
+   "name": "Diamantkrona",
+   "r": "L",
+   "slot": "huvud",
+   "file": "p-diamantkrona-{form}.png"
+  }
+ ]
+}
